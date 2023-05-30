@@ -1,0 +1,34 @@
+#include <iostream>
+#include <cmath>
+
+int main()
+{
+    setlocale(LC_ALL, "Rus");
+    double Plat, Proc, Proc1, SumSud, PlatIY, Year, AllT;
+    Proc = 7.5;
+    Proc1 = Proc / 100;
+
+    std::cout << "\t\tПрограмма для расчета платежей по кридиту.\n";
+    std::cout << "\tГодовой процент по крдиту стоставлят " << Proc << " %  \n\n";
+    std::cout << "ведите сумму займа : "; std::cin >> SumSud; std::cout << SumSud << " руб.\n";
+    std::cout << "введите срок займа в годах (не более 10 лет и не менее 1 года) : "; std::cin >> Year; std::cout << Year << " лет \n";
+    if (Year > 10 || Year < 1)
+    {
+        std::cout << "Недопустимый срок займа.";
+    }
+    else
+    {
+        std::cout << "введите количесвто платежей в год (от 1 до 12) : "; std::cin >> PlatIY; std::cout << PlatIY << " .\n";
+        if (PlatIY > 12 || PlatIY < 1)
+        {
+            std::cout << "Недопустимое количество платежей!";
+        }
+        else
+        {
+            Plat = ((Proc1 * (SumSud / PlatIY)) / (1 - pow(((Proc1 / PlatIY) + 1), (-PlatIY * Year))));
+            std::cout << "Платеж в месяц состовляет : " << Plat << " руб.\n\n";
+            AllT = Plat * (Year * PlatIY);
+            std::cout << "\tСумма кредита составляет : " << AllT << " руб.";
+        }
+    }
+}
